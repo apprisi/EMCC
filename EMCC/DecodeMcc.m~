@@ -1,0 +1,13 @@
+function DecodeMCC(file_X, file_mcc, file_G, file_msg_recon, )
+X = load(file_X);
+Mcc = loadmcc(file_mcc);
+load(file_G);
+[Msg,Pairs] = Decode(X, Mcc, G);
+
+MsgBit = zeros(size(Msg,1), 2*size(G,2));
+for i=1:size(Msg,1)
+    MSG = de2bi(Msg(:,i));
+    MsgBit(i,:) = MSG(:);
+end
+
+save_msgbit(file_msg_recon, MsgBit);
